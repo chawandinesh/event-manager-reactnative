@@ -37,11 +37,10 @@ export default function ImagePickerComponent(props) {
     <View
       style={{
         flexDirection: "row",
-        justifyContent: "space-between",
+        justifyContent: "center",
         width: 300,
       }}
     >
-      <Text>Pick Image: </Text>
       {image && (
         <Image
           source={{ uri: image }}

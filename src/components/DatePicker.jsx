@@ -21,7 +21,7 @@ const DateTimePicker = (props) => {
   };
 
   return (
-    <View>
+    <View style={{ justifyContent: "center", alignItems: "center" }}>
       <Ionicons
         name="ios-time"
         onPress={showDatePicker}

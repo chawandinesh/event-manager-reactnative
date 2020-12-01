@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TextInput, Button, Alert } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  Dimensions,
+  Alert,
+  KeyboardAvoidingView,
+} from "react-native";
 import { connect } from "react-redux";
 import { atnUpdatePersonalEvent } from "../../redux/actions/personalActions";
 import { atnUpdateProfessionalEvent } from "../../redux/actions/professionalActions";
@@ -7,6 +15,7 @@ import { atnUpdateSocialEvent } from "../../redux/actions/socialActions";
 import { atnUpdateOtherEvent } from "../../redux/actions/otherActions";
 import Datepick from "../../components/DatePicker";
 import Imagepick from "../../components/ImagePicker";
+const { height, width } = Dimensions.get("window");
 function AddPersonalEvent(props) {
   const [data, setData] = useState({
     title: "",
@@ -51,151 +60,267 @@ function AddPersonalEvent(props) {
   return (
     <View
       style={{
+        height: height,
+        width: width,
+        backgroundColor: "#495",
+        flex: 1,
         alignItems: "center",
-        marginTop: 30,
+        justifyContent: "center",
       }}
     >
-      <TextInput
-        style={{
-          height: 40,
-          borderColor: "gray",
-          width: 300,
-          borderWidth: 0,
-          marginBottom: 10,
-          borderBottomWidth: 2,
-        }}
-        editable={false}
-        value={`Type: ${props.route.params.type}`}
-        placeholder="Give a Title"
-      />
-
       <View
         style={{
-          justifyContent: "space-between",
-          flexDirection: "row",
-          width: 300,
+          padding: 30,
+          justifyContent: "center",
           alignItems: "center",
+          backgroundColor: "#fff",
+          borderBottomRightRadius: 60,
+          borderTopLeftRadius: 60,
+          margin: 40,
+          overflow: "hidden",
         }}
       >
-        <View>
-          <Text style={{ fontSize: 15, marginRight: 10 }}>Title: </Text>
-        </View>
-        <View>
-          <TextInput
+        <KeyboardAvoidingView behavior={"padding"}>
+          <View
             style={{
-              height: 40,
-              borderColor: "gray",
-              width: 200,
-              borderWidth: 0,
+              borderWidth: 1,
+              borderRadius: 10,
               marginBottom: 10,
-              borderBottomWidth: 2,
+              justifyContent: "center",
             }}
-            onChangeText={(text) => setData({ ...data, title: text })}
-            value={data.title}
-            placeholder="Give a Title"
-          />
-        </View>
-      </View>
+          >
+            <View
+              style={{
+                backgroundColor: "#495",
+                borderRadius: 10,
+                width: width * 0.7,
+              }}
+            >
+              <Text
+                style={{
+                  textAlign: "center",
+                  padding: 5,
+                  fontSize: 15,
+                  color: "#fff",
+                }}
+              >
+                Type
+              </Text>
+            </View>
+            <View>
+              <Text
+                style={{
+                  textAlign: "center",
+                  padding: 5,
+                  fontSize: 15,
+                }}
+              >
+                {props.route.params.type}
+              </Text>
+            </View>
+          </View>
 
-      <View
-        style={{
-          justifyContent: "space-between",
-          flexDirection: "row",
-          width: 300,
-          alignItems: "center",
-        }}
-      >
-        <Text style={{ fontSize: 15, marginRight: 10 }}>Ocassion: </Text>
-        <TextInput
-          style={{
-            height: 40,
-            borderColor: "gray",
-            width: 200,
-            borderWidth: 0,
-            borderBottomWidth: 2,
-            marginBottom: 20,
-          }}
-          onChangeText={(text) => setData({ ...data, ocassion: text })}
-          value={data.ocassion}
-          placeholder="Enter Ocassion"
-        />
-      </View>
+          <View style={{ borderWidth: 1, borderRadius: 10, marginBottom: 10 }}>
+            <View
+              style={{
+                backgroundColor: "#495",
+                borderRadius: 10,
+                width: width * 0.7,
+                justifyContent: "center",
+              }}
+            >
+              <Text
+                style={{
+                  textAlign: "center",
+                  padding: 5,
+                  fontSize: 15,
+                  color: "#fff",
+                }}
+              >
+                Title
+              </Text>
+            </View>
+            <View>
+              <TextInput
+                style={{
+                  textAlign: "center",
+                  padding: 5,
+                  fontSize: 15,
+                }}
+                onChangeText={(text) => setData({ ...data, title: text })}
+                value={data.title}
+                placeholder="Enter Title Name"
+              />
+            </View>
+          </View>
 
-      <View
-        style={{
-          justifyContent: "space-between",
-          flexDirection: "row",
-          width: 300,
-          alignItems: "center",
-        }}
-      >
-        <Text style={{ fontSize: 15, marginRight: 10 }}>Date & Time: </Text>
-        <TextInput
-          style={{
-            height: 40,
-            borderColor: "gray",
-            width: 180,
-            borderWidth: 0,
-            borderBottomWidth: 2,
-            marginBottom: 20,
-          }}
-          onFocus={(e) =>
-            Alert.alert(
-              "Select Date Alert",
-              "Please click Select date / time",
-              [{ text: "OK", onPress: () => console.log("OK Pressed") }]
-            )
-          }
-          onChange={(e) =>
-            Alert.alert(
-              "Select Date Alert",
-              "Please click Select date / time",
-              [{ text: "OK", onPress: () => console.log("OK Pressed") }]
-            )
-          }
-          value={data.dateTime}
-          placeholder="Select Date & Time"
-        />
-        <Datepick getDateTime={getDateTime} />
-      </View>
-      <View
-        style={{
-          marginBottom: 10,
-        }}
-      >
-        <Imagepick getImageUri={getImageUri} imageData={data.image} />
-      </View>
+          <View style={{ borderWidth: 1, borderRadius: 10, marginBottom: 10 }}>
+            <View
+              style={{
+                backgroundColor: "#495",
+                borderRadius: 10,
+                width: width * 0.7,
+                justifyContent: "center",
+              }}
+            >
+              <Text
+                style={{
+                  textAlign: "center",
+                  padding: 5,
+                  fontSize: 15,
+                  color: "#fff",
+                }}
+              >
+                Ocassion
+              </Text>
+            </View>
+            <View>
+              <TextInput
+                style={{
+                  textAlign: "center",
+                  padding: 5,
+                  fontSize: 15,
+                }}
+                onChangeText={(text) => setData({ ...data, ocassion: text })}
+                value={data.ocassion}
+                placeholder="Enter Ocassion"
+              />
+            </View>
+          </View>
 
-      <View
-        style={{
-          justifyContent: "space-between",
-          flexDirection: "row",
-          width: 300,
-          alignItems: "center",
-        }}
-      >
-        <Text style={{ fontSize: 15, marginRight: 10 }}>Description: </Text>
-        <TextInput
-          style={{
-            borderColor: "gray",
-            width: 200,
-            borderWidth: 2,
-            marginBottom: 10,
-          }}
-          onChangeText={(text) => setData({ ...data, note: text })}
-          value={data.note}
-          placeholder="Enter Description"
-          multiline
-          numberOfLines={4}
-        />
-      </View>
-      <View style={{ marginTop: 10 }}>
-        <Button
-          title="submit"
-          style={{ marginTop: 20 }}
-          onPress={(e) => handleSubmit(props.route.params.type)}
-          color="#495"
-        />
+          <View style={{ borderWidth: 1, borderRadius: 10, marginBottom: 10 }}>
+            <View
+              style={{
+                backgroundColor: "#495",
+                borderRadius: 10,
+                width: width * 0.7,
+                justifyContent: "center",
+              }}
+            >
+              <Text
+                style={{
+                  textAlign: "center",
+                  padding: 5,
+                  fontSize: 15,
+                  color: "#fff",
+                }}
+              >
+                Date & Time
+              </Text>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+              }}
+            >
+              <TextInput
+                style={{
+                  textAlign: "center",
+                  padding: 5,
+                  fontSize: 15,
+                }}
+                editable={false}
+                onFocus={(e) =>
+                  Alert.alert(
+                    "Select Date Alert",
+                    "Please click Select date / time",
+                    [{ text: "OK", onPress: () => console.log("OK Pressed") }]
+                  )
+                }
+                onChange={(e) =>
+                  Alert.alert(
+                    "Select Date Alert",
+                    "Please click Select date / time",
+                    [{ text: "OK", onPress: () => console.log("OK Pressed") }]
+                  )
+                }
+                value={data.dateTime}
+                placeholder="Select Date & Time"
+              />
+              <Datepick getDateTime={getDateTime} />
+            </View>
+          </View>
+
+          {/* jkkj */}
+
+          <View style={{ borderWidth: 1, borderRadius: 10, marginBottom: 10 }}>
+            <View
+              style={{
+                backgroundColor: "#495",
+                borderRadius: 10,
+                width: width * 0.7,
+                justifyContent: "center",
+              }}
+            >
+              <Text
+                style={{
+                  textAlign: "center",
+                  padding: 5,
+                  fontSize: 15,
+                  color: "#fff",
+                }}
+              >
+                Pick Image
+              </Text>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+              }}
+            >
+              <Imagepick getImageUri={getImageUri} imageData={null} />
+            </View>
+          </View>
+
+          {/* jsdfk */}
+
+          <View style={{ borderWidth: 1, borderRadius: 10, marginBottom: 10 }}>
+            <View
+              style={{
+                backgroundColor: "#495",
+                borderRadius: 10,
+                width: width * 0.7,
+                justifyContent: "center",
+              }}
+            >
+              <Text
+                style={{
+                  textAlign: "center",
+                  padding: 5,
+                  fontSize: 15,
+                  color: "#fff",
+                }}
+              >
+                Description
+              </Text>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+              }}
+            >
+              <TextInput
+                onChangeText={(text) => setData({ ...data, note: text })}
+                value={data.note}
+                placeholder="Enter Description"
+                multiline
+                numberOfLines={3}
+              />
+            </View>
+          </View>
+
+          <View style={{ marginTop: 10 }}>
+            <Button
+              title="submit"
+              style={{ marginTop: 20 }}
+              onPress={(e) => handleSubmit(props.route.params.type)}
+              color="#495"
+            />
+          </View>
+        </KeyboardAvoidingView>
       </View>
     </View>
   );

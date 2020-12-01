@@ -36,12 +36,24 @@ export default function App() {
           <Stack.Screen
             name="ShowPersonalEvents"
             component={ShowPersonalEvents}
-            options={{ headerTitle: "Show Events" }}
+            options={{
+              headerTitle: "Show Events",
+              headerTitleAlign: "center",
+              headerStyle: { backgroundColor: "#495" },
+              headerTitleStyle: { color: "#fff" },
+              headerTintColor: "#fff",
+            }}
           />
           <Stack.Screen
             name="UpdatePersonalEvents"
             component={UpdatePersonalEvents}
-            options={{ headerTitle: "Update Events" }}
+            options={{
+              headerTitle: "Update Event",
+              headerTitleAlign: "center",
+              headerStyle: { backgroundColor: "#495" },
+              headerTitleStyle: { color: "#fff" },
+              headerTintColor: "#fff",
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>

@@ -216,14 +216,14 @@ function PersonalScreen(props) {
           {props.route.name}
         </Text>
         <TouchableOpacity
-          style={{ borderWidth: 1, padding: 4 }}
+          style={{ padding: 4 }}
           onPress={() =>
             props.navigation.navigate("AddPersonalEvents", {
               type: props.route.name,
             })
           }
         >
-          <Text style={{ color: "white" }}>Add</Text>
+          <FontAwesome name="plus" color="#fff" size={28} />
         </TouchableOpacity>
       </View>
       {getEventsWithType(props.route.name)}

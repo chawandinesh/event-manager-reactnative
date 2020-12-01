@@ -16,7 +16,6 @@ function ShowPersonalEvents(props) {
     }
   };
   const renderWithType = (type) => {
-    // if (type === "Personal") {
     return (
       <View
         style={{
@@ -25,7 +24,111 @@ function ShowPersonalEvents(props) {
           width,
         }}
       >
+        <View style={{ marginTop: 10 }}>
+          <Image
+            source={{
+              uri: getEventDetails(type, "image"),
+            }}
+            style={{
+              width: 150,
+              borderRadius: 15,
+              alignItems: "center",
+              height: 150,
+              resizeMode: "stretch",
+            }}
+          />
+        </View>
+        <View>
+          <Text
+            style={{
+              fontSize: 25,
+              textAlign: "center",
+              fontWeight: "bold",
+              padding: 5,
+            }}
+          >
+            {getEventDetails(type, "title")}
+          </Text>
+        </View>
+
         <View
+          style={{
+            backgroundColor: "#495",
+            borderTopRightRadius: 30,
+            borderBottomLeftRadius: 30,
+            padding: 20,
+          }}
+        >
+          <View style={{ marginBottom: 30 }}>
+            <View>
+              <Text
+                style={{
+                  color: "#eee",
+                  fontSize: 20,
+                }}
+              >
+                Ocassion:-
+              </Text>
+            </View>
+            <Text
+              style={{
+                fontSize: 25,
+                textAlign: "center",
+                color: "#fff",
+                padding: 5,
+              }}
+            >
+              {getEventDetails(type, "ocassion")}
+            </Text>
+          </View>
+          <View style={{ marginBottom: 30 }}>
+            <View>
+              <Text
+                style={{
+                  color: "#eee",
+                  fontSize: 20,
+                }}
+              >
+                Date & Time:-
+              </Text>
+            </View>
+            <Text
+              style={{
+                fontSize: 25,
+                color: "#fff",
+                textAlign: "center",
+
+                padding: 5,
+              }}
+            >
+              {getEventDetails(type, "dateTime")}
+            </Text>
+          </View>
+          <View>
+            <View>
+              <Text
+                style={{
+                  color: "#eee",
+                  fontSize: 20,
+                }}
+              >
+                Description:-
+              </Text>
+            </View>
+            <Text
+              style={{
+                color: "#fff",
+                fontSize: 25,
+                textAlign: "center",
+
+                padding: 5,
+              }}
+            >
+              {getEventDetails(type, "note")}
+            </Text>
+          </View>
+        </View>
+        {/* <View
           style={{
             width,
             justifyContent: "center",
@@ -151,7 +254,7 @@ function ShowPersonalEvents(props) {
               />
             )}
           </View>
-        </View>
+        </View> */}
       </View>
     );
   };
